@@ -6,7 +6,7 @@ const Navbar = () => {
     <div style={{backgroundColor: 'lightblue'}}>
       <ul>
         <Link to="/home"><li style={{fontSize: 30}}>Home</li></Link>
-        <li style={{fontSize: 30}}>Profile</li>
+        <Link to="/store"><li style={{fontSize: 30}}>Store</li></Link>
       </ul>
     </div>
   );

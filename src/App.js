@@ -1,9 +1,12 @@
 //const React = require('react')
 import React from 'react'; //es6
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {Provider} from 'react-redux';
 
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
+import StoreList from './Components/StoreList';
+import store from './Publics/Redux/store';
 
 //stateless
 //function
@@ -18,21 +21,20 @@ const App = () => {
 
   // }
   return (
-    <Router>
-      <Navbar />
-      <Route
-        path="/"
-        exact
-        render={() => {
-          return (
-            <div>
-              <p style={{fontSize: 40}}>ini localhost:3000/</p>
-            </div>
-          );
-        }}
-      />
-      <Route path="/home" component={Home} />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <Route
+          path="/"
+          exact
+          render={props => {
+            return <Redirect to="/store" {...props} />;
+          }}
+        />
+        <Route path="/home" component={Home} />
+        <Route path="/store" component={StoreList} />
+      </Router>
+    </Provider>
   );
 };
 
